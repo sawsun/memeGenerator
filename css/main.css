@@ -1,0 +1,215 @@
+
+@import 'header.css';
+@import 'base.css';
+
+footer{position: relative;}
+
+/* HELPERS */
+
+.container{
+    width: 80%;
+    margin: auto;   
+}
+
+/* main */
+
+main{
+    border: 2px solid grey;
+    height: 100%;
+    margin: auto;
+}
+
+/* GALLERY */
+
+.gallery{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax( 200px,1fr)); 
+    grid-gap: 10px;
+}
+
+.gallery > img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: .4s;
+}
+
+.gallery > img:hover{
+opacity: .7;
+cursor: pointer;
+}
+
+/* UPLOAD IMG */
+
+.box{
+    display: flex;
+    justify-content: center;
+}
+
+.box > img{
+    min-width: 200px;
+    max-width: 25%; 
+    height: 200px;
+    object-fit: cover;
+    transition: .4s;  
+    position: absolute;
+    justify-content: center;
+}
+
+.box > input{
+    min-width: 200px;
+    max-width: 1fr; 
+    height: 200px;
+    object-fit: cover;
+    transition: .4s;  
+    opacity: 0;
+}
+
+.box > input:hover{
+cursor: pointer;
+}
+
+.memeEditor{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #f2f2f2;
+}
+  
+  .editBtns{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:#f2f2f2;
+    height: 5%;
+  }
+  .canvasHolder{
+      width: 60%;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  a:active{
+    text-decoration: none;
+  }
+
+  footer{
+      background-color: rgb(175, 196, 84);
+      height: 100px;
+  }
+
+  nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  nav button{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    margin:2px;
+    cursor: pointer;   
+  }
+
+  .colorPicker{
+    border: none;
+  width: 32px;
+  height: 32px;
+  }
+.editctrl{
+    cursor: pointer;
+}
+.colorPicker{
+    border:0;height:20px;width:20px;
+}
+
+.border{
+    border: 3px solid #6f6b6a93;
+}
+
+.text-styling-btns{
+    border: 3px solid #6f6b6a93;
+    border-radius: 5%;
+    margin-top: 2%;
+    height: auto;
+}
+                    
+.text-styling-btns > *{
+margin: 5px;
+}
+ 
+.directions{
+    display:flex;
+    justify-content: space-between;
+    border: 3px solid #6f6b6a93;
+    border-radius: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    height: auto;
+}
+.actions-btns{
+    display: flex;
+    flex-direction: column;
+}
+.actions-btns:first-child{
+    margin: 0 auto;
+}
+
+.actions-btns button{
+    border: none;
+    border-radius: 15px;
+    background: seagreen;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 2px;
+}
+
+.text-styling-btns button{
+    border: none;
+    border-radius: 15px;
+    height: 30px;
+    background: seagreen;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 2px;
+}
+
+.actions-btns > section{
+    margin: 5px;
+}
+
+section > .fas{
+    font-size: 45px;
+}
+@media (max-width: 800px) {
+.container{
+    width: 100%;
+    margin: 0;  } 
+
+.actions-btns{
+    flex-direction: row;
+    align-items: center;
+    height: 28px;
+    padding: 10px;
+    line-height: 5px;
+    margin: 2%;
+    height: 100%;
+}
+.actions-btns button{
+    padding: 10px; 
+    margin: 4px;
+}
+.inputText{
+    height: 25px;
+}
+
+}

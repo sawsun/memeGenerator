@@ -1,0 +1,32 @@
+@import 'header.css';
+@import 'base.css';
+
+main{
+    text-align: center;
+}
+
+.link-bar{
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+.link-bar > a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: brown;
+    border-radius: 50%;
+    margin: 5px;
+    text-decoration: none;
+width: 45px;
+height: 45px;
+}
+
+.link-bar > a:hover{
+opacity: .8;
+cursor: pointer;
+}
+a > i{
+    font-size: 20px;
+    color: white;
+}

@@ -1,0 +1,33 @@
+@import 'header.css';
+@import 'base.css';
+
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+.myImg{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.contact{
+    text-align: center;
+}
+
+.contact > button{
+    width: 130px;
+    height: 35px;
+    border: none;
+    background: seagreen;
+    border-radius: 15px;
+}
+.contact > button:hover{
+opacity: .7;
+cursor: pointer;
+}
