@@ -37,7 +37,7 @@ align-items: center;
     align-items: center;
     width: 100px;
     line-height: 99px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     color: antiquewhite;
     background: cadetblue;
     border-bottom: 0;

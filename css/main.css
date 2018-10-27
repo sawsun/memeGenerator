@@ -15,7 +15,7 @@ footer{position: relative;}
 /* main */
 
 main{
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     border-top: 0;
     height: 100%;
     margin: auto;
@@ -75,20 +75,53 @@ cursor: pointer;
 
 .memeEditor{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
-    justify-content: space-between;
-    background-color: #f2f2f2;
+    justify-content: center;
+    /* background-color: #f2f2f2; */
+    
 }
   
   .editBtns{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color:#f2f2f2;
-    height: 5%;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    /* border: #619e9f 3px solid; */
+    /* border: #619e9f 3px solid; */
+    /* background-color: #f2f2f2; */
+    margin-left: 2%;
+    /* height: 5%; */
+    padding-left: 15px;
   }
+
+  .save{
+      border:none;
+      background: none;
+      cursor: pointer;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bolder;
+      font-size: 15px;
+      margin-top: 10px;
+  }
+
+  .back{
+    margin-bottom: 10px;
+    border:none;
+    background: none;
+    font-weight: bolder;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+}
+a {color:#000000;}      /* unvisited link */
+a:visited {color:#000000;}  /* visited link */
+a:hover {color:#000000;}  /* mouse over link */
+a:active {color:#000000;}  
+
+.sectionInput{
+    display: flex;
+}
   .canvasHolder{
       width: 60%;
   }
@@ -123,41 +156,78 @@ cursor: pointer;
     cursor: pointer;   
   }
 
+.addRemoveLines{
+    display: flex;
+    padding: 1%;
+    justify-content: space-between;
+    
+}
+.addRemoveLines > *{
+    /* flex-grow: 1; */
+    font-size: 15px;
+    /* line-height: 30px; */
+    margin-bottom: 5px;
+}
+.memeEditor h3{
+    margin: 0 auto;
+    margin-top: 10%;
+    margin-bottom: 4%;
+
+}
   .colorPicker{
-    border: none;
+  border: none;
   width: 32px;
   height: 32px;
+  cursor: pointer;
   }
 .editctrl{
     cursor: pointer;
+}
+.fontFamily{
+    width: 100%;
+}
+.selectFamily{
+    width: 100%;
+    height: 1rem;
+    height: 2rem;
+    font-size: 1rem;
+    font-family: "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
+    margin-bottom: 2%;
 }
 .colorPicker{
     border:0;height:20px;width:20px;
 }
 
-.border{
-    border: 3px solid #6f6b6a93;
-}
-
 .text-styling-btns{
-    border: 3px solid #6f6b6a93;
-    border-radius: 5%;
-    margin-top: 2%;
-    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    /* align-items: center; */
 }
-                    
-.text-styling-btns > *{
-margin: 5px;
+.lolo{
+    display:flex;
 }
- 
+.lolo > *{
+    display: flex;
+    flex-grow: 1;
+    font-size: 15px;
+    margin-bottom: 4%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.kiki{
+    display:flex;
+    justify-content: space-between;
+}
 .directions{
     display:flex;
     justify-content: space-between;
-    border: 3px solid #6f6b6a93;
-    border-radius: 5%;
+    
+    /* border-radius: 5%; */
     margin-top: 2%;
     margin-bottom: 1%;
-    height: auto;
+    /* height: auto; */
 }
 .actions-btns{
     display: flex;
@@ -176,22 +246,50 @@ margin: 5px;
     letter-spacing: 2px;
 }
 
-.text-styling-btns button{
-    border: none;
-    border-radius: 15px;
-    height: 30px;
-    background: seagreen;
-    color: white;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    letter-spacing: 2px;
+.btn-color{
+    font-size: 1rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: 2%;
+    height: 2rem;
+    background-color: #bdbcbc;
+    display: flex;
+    flex-wrap: nowrap;
 }
-
+.editFont{
+    display: flex;
+    flex-direction: column;
+}
 .actions-btns > section{
     margin: 5px;
 }
 
 section > .fas{
-    font-size: 45px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.fofo{
+    display: flex;
+    width: 100%;
+    height: 10%;
+}
+.fofo > *{
+    /* flex-grow: 1; */
+    margin: auto;
+    font-size: 15px;
+}
+.inputText{
+    height: 25px;
+    width:95%;
+    font-size: 15px;
+}
+a[href], input[type='submit'], input[type='image'], label[for], select, button, .pointer {
+    cursor: pointer;
+}
+.shadow{
+    cursor: pointer;
+}
+label{
+    cursor: pointer;
 }
 @media (max-width: 800px) {
 .container{
@@ -211,8 +309,6 @@ section > .fas{
     padding: 10px; 
     margin: 4px;
 }
-.inputText{
-    height: 25px;
-}
+
 
 }

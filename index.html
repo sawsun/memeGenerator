@@ -49,58 +49,64 @@ crossorigin="anonymous">
 
     </section>
 </section>
-<section class="memeEditor" style="display: none;">
+<section class="memeEditor" style="display: none;padding:1%">
+    <canvas id="memeCanvas" width = 1000 height = 1000 style="width:50%;height:50%;" onclick="handleLineText(event)"></canvas>
     <!-- ******************************************************************************** -->
-    <section class="editBtns" style="margin-bottom: 3%;">
-        <section class="text-styling-btns border">
-            <input type="text" class="inpt-txt1 editctrl inputText"
+    <section class="editBtns" >
+        <button onclick="showGallery()" class="back">Back To Gallery</button>
+        <section class="sectionInput">
+            <input type="text" class="inpt-txt1 inputText" 
                 placeholder="Enter your text here" onkeyup="writeText(this)" data-idx="1">
-            <button class ="editctrl addline" onclick="onAdding()">add new line</button>
-            <button type="button" class="btn editctrl" onclick="updateFontSize(this)" data-input="1">+</button>
-            <button type="button" class="btn editctrl" onclick="updateFontSize(this)" data-input="1">-</button>
+        </section>
+        <section class="addRemoveLines">
+            <button class ="addLine" onclick="onAdding()"><i class="fas fa-plus"></i> Add Line</button>
+            <button class ="deleteline" onclick="onDeleteLine()" title="delete"><i class="fa fa-trash" aria-hidden="true"></i> Delete Line</button>
+        </section>
+        <section class = "fofo">
+            <button class ="nextLine" onclick="pagination('next')">Switch Line</button>
+        </section>
+        <h3><i style="font-size:24px" class="fa">&#xf044;</i>Style Your Font</h3>
+        <section class="editFont">
+        <section class="fontFamily" style="display:flex;">
+        <select onchange="updateFontFamily(this.value)" class="selectFamily" >
+            <option>select font family</option>
+            <option value="Arial">Arial</option>
+            <option value="mono">mono</option>
+            <option value="Impact">Impact</option>
+        </select>
         </section>
         <section class="text-styling-btns">
-        <label>
-            <input class ="editctrl" type="checkbox" onclick="updateTextShadow(this)" data-checkBox="1">
-            Text Shadow
-        </label>
-        <input type="color" class="colorPicker editctrl" value='#ffffff' data-inputColor="1"
-            onchange="updateFontColor(this)">
-            <select onchange="updateFontFamily(this.value)">
-                    <option>select font family</option>
-                    <option value="Arial">Arial</option>
-                    <option value="mono">mono</option>
-                    <option value="Impact">Impact</option>
-                </select>
+        <section class="lolo" >
+            <button type="button " onclick="updateFontSize(this)" data-input="1">+ Font Size</button>
+            <button type="button" onclick="updateFontSize(this)" data-input="1">- Font Size</button>
         </section>
-        
+        <section class="kiki">
+            <!-- <button class="btn-color">Font Color </button> -->
+             <label>Font Color <input type="color" class="colorPicker" value='#ff9ff9' data-inputColor="1" onchange="updateFontColor(this)"></label>
+             <label>Text Shadow <input class="shadow" type="checkbox" onclick="updateTextShadow(this)" data-checkBox="1"></label>
+        </section>
+        </section>
         <section class="directions">
         <section >
-            <i class="fas fa-align-left editctrl leftAlign" onclick="onAlignText('left')"></i>
-            <i class="fas fa-align-center editctrl centerAlign" onclick="onAlignText('center')"></i>
-            <i class="fas fa-align-right editctrl rightAlign" onclick="onAlignText('right')" ></i>
+            <i class="fas fa-align-left  leftAlign" onclick="onAlignText('left')"></i>
+            <i class="fas fa-align-center  centerAlign" onclick="onAlignText('center')"></i>
+            <i class="fas fa-align-right  rightAlign" onclick="onAlignText('right')" ></i>
         </section>
         <section>
-            <i class="fas fa-arrow-right editctrl" onclick="moveLine('right')"></i>
-            <i class="fas fa-arrow-left editctrl" onclick="moveLine('left')"></i>
-            <i class="fas fa-arrow-up editctrl" onclick="moveLine('up')"></i>
-            <i class="fas fa-arrow-down editctrl" onclick="moveLine('down')"></i>
+            <i class="fas fa-arrow-right " onclick="moveLine('right')"></i>
+            <i class="fas fa-arrow-left " onclick="moveLine('left')"></i>
+            <i class="fas fa-arrow-up " onclick="moveLine('up')"></i>
+            <i class="fas fa-arrow-down " onclick="moveLine('down')"></i>
         </section>
         </section>
-        <section class="actions-btns text-styling-btns"> 
-        <section>
-            <button class ="editctrl nextLine" onclick="pagination('next')">Next Line</button>
+        <hr>
+        <button name="save" class="save"><a onclick="downloadMeme(this)">DownLoad Meme</a></button>
+        </section>
         </section>
 
-        <section>
-            <button class ="editctrl" onclick="onDeleteLine()" title="delete">delete</button>
-            <button class ="editctrl" name="save" class="save editctrl"><a onclick="downloadMeme(this)">Save</a></button>
-            <button onclick="showGallery()">Back To Gallery</button>
-        </section>
-        </section>
     </section>
     <!-- ******************************************************************************** -->
-    <canvas id="memeCanvas" width = 1000 height = 1000 style="width:100%;height:100%;" onclick="handleLineText(event)"></canvas>
+</section>
 </section>
 </main>
 <script src="js/data.js"></script>
