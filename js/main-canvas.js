@@ -61,7 +61,7 @@ function renderCanvas() {
             gCtx.textAlign = 'center';
         }else if(gMeme.txts[i].alignText === 'right') {
             // gMeme.txts[Idx].x = gCanvas.width - gCtx.measureText(gMeme.txts[Idx].line).width - 5;
-            gMeme.txts[i].x = window.gCanvas.offsetWidth;// - (gCtx.measureText(gMeme.txts[Idx].line).width - 5));
+            gMeme.txts[i].x = gCanvas.width - 10;//window.gCanvas.offsetWidth;// - (gCtx.measureText(gMeme.txts[Idx].line).width - 5));
             gCtx.textAlign = 'right';
         }
             
