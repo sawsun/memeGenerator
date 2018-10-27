@@ -6,7 +6,7 @@ var gMeme = {
     memeImage: new Image()
 }
 
-var gImgs, gCurrEl, gCurrLine = 0;
+var gImgs, gCurrLine = 0;
 var gElMemeEditor, gElGallery;
 var gCanvas, gCtx, gHoldImg;
 

@@ -14,6 +14,7 @@ function createLine(lineText) {
         bold: 0,
         x: 5,
         y: 100,
+        moveByArrow: 0,
         isActive: 0
     }
 
@@ -47,16 +48,17 @@ function addLine(txt) {
 
 
 function alignTextLine(Idx){
-    var currentLine = gMeme.txts[Idx];
-    var LineDirection = currentLine.alignText;
-
-    if (LineDirection === 'right')    currentLine.x = (gCanvas.width - (gCtx.measureText(currentLine.line).width + 5));
-    else if (LineDirection === 'center') {
-        var lineWidth = gCtx.measureText(currentLine).width;
-        var startingPoint = (gCanvas.width / 2) - (lineWidth / 2);
-        currentLine.x = startingPoint;
+   
+    if (gMeme.txts[Idx].alignText === 'right') {
+        // gMeme.txts[Idx].x = gCanvas.width - gCtx.measureText(gMeme.txts[Idx].line).width - 5;
+        gMeme.txts[Idx].x = window.gCanvas.offsetWidth;// - (gCtx.measureText(gMeme.txts[Idx].line).width - 5));
     }
-    else currentLine.x = 5;
+    else if (gMeme.txts[Idx].alignText === 'center') {
+        var lineWidth = gCtx.measureText(gMeme.txts[Idx]).width;
+        var startingPoint = (window.gCanvas.offsetWidth / 2) - (lineWidth / 2);
+        gMeme.txts[Idx].x = startingPoint;
+    }
+    else gMeme.txts[Idx].x = 5;
     renderCanvas();
 }
 
@@ -69,10 +71,16 @@ function deleteLine(lineId) {
         
         if(gMeme.txts.length === 0) {
             gMeme.txts.push(createLine(''));
-            gCurrLine = 0;
-        }else   gCurrLine--;
+        }  
         
+        gCurrLine = 0;
         console.log('deleteLine gCurrLine',gCurrLine);
+        
+        var elInputTxt = document.querySelector('.inputText');
+        var elInputClr = document.querySelector('.colorPicker');
+        elInputTxt.value = gMeme.txts[gCurrLine].line;
+        elInputClr.value = gMeme.txts[gCurrLine].color;
+
         saveToStorage(KEY_gMEM, gMeme);
     }
 }
