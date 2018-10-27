@@ -2,16 +2,17 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-crossorigin="anonymous">
-<title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    <title>MemeGenerator</title>
 </head>
 <!-- onresize="setCanvasStartingCoords()" -->
-<body onload="init()" onresize="setCanvasSize()" >
+
+<body onload="init()" onresize="setCanvasSize()">
     <header>
         <div class="screen" onclick="toggleMenu(event)"></div>
         <section class="header-wraper container">
@@ -25,98 +26,103 @@ crossorigin="anonymous">
                 </ul>
             </nav>
 
-    <button onclick="toggleMenu(event)" class="menu-icon">
-        <i class="fas fa-bars"></i>
-    </button>
-</section>
-</header>
-<main class="container">
-<section class="galleryWrap">
-    <h2>Choose a picture:</h2>
-    <div>
-        Search by category
-        <select onchange="onSearchImg(this.value)">
-            <option value="">All</option>
-            <option value="happy">Happy</option>
-            <option value="kid">Kids</option>
-            <option value="funny">Funny</option>
-            <option value="evil">Evil</option>
-        </select> <br>
-        Search:<input type="search" id="search" onkeyup="onSearchImg()" list ="keywords">
-        <datalist id = "keywords"></datalist>
-    </div>
-    <section class="gallery">
+            <button onclick="toggleMenu(event)" class="menu-icon">
+                <i class="fas fa-bars"></i>
+            </button>
+        </section>
+    </header>
+    <main class="container">
+        <section class="galleryWrap">
+            <h2>Choose a picture:</h2>
+            <div>
+                Search by category
+                <select onchange="onSearchImg(this.value)">
+                    <option value="">All</option>
+                    <option value="happy">Happy</option>
+                    <option value="kid">Kids</option>
+                    <option value="funny">Funny</option>
+                    <option value="evil">Evil</option>
+                </select> <br>
+                Search:<input type="search" id="search" onkeyup="onSearchImg()" list="keywords">
+                <datalist id="keywords"></datalist>
+            </div>
+            <section class="gallery">
 
-    </section>
-</section>
-<section class="memeEditor" style="display: none;padding:1%;">
-    <label class="backMobile"><i class="fas fa-arrow-left"></i>Back</label>
-    <canvas id="memeCanvas" width = 1000 height = 1000 style="width:50%;height:50%;" onclick="handleLineText(event)"></canvas>
-    <!-- ******************************************************************************** -->
-    <section class="editBtns" >
-        <button onclick="showGallery()" class="back">Back To Gallery</button>
-        <section class="sectionInput">
-            <input type="text" class="inpt-txt1 inputText" 
-                placeholder="Enter your text here" onkeyup="writeText(this)" data-idx="1">
+            </section>
         </section>
-        <section class="addRemoveLines">
-            <button class ="addLine" onclick="onAdding()"><i class="fas fa-plus"></i> Add Line</button>
-            <button class ="deleteline" onclick="onDeleteLine()" title="delete"><i class="fa fa-trash" aria-hidden="true"></i> Delete Line</button>
-        </section>
-        <section class = "fofo">
-            <button class ="nextLine" onclick="pagination('next')">Switch Line</button>
-        </section>
-        <h3><i style="font-size:24px" class="fa">&#xf044;</i>Style Your Font</h3>
-        <section class="editFont">
-        <section class="fontFamily" style="display:flex;">
-        <select onchange="updateFontFamily(this.value)" class="selectFamily" >
-            <option>select font family</option>
-            <option value="Arial">Arial</option>
-            <option value="mono">mono</option>
-            <option value="Impact">Impact</option>
-        </select>
-        </section>
-        <section class="text-styling-btns">
-        <section class="lolo" >
-            <button type="button " onclick="updateFontSize(this)" data-input="1">+ Font Size</button>
-            <button type="button" onclick="updateFontSize(this)" data-input="1">- Font Size</button>
-        </section>
-        <section class="kiki">
-            <!-- <button class="btn-color">Font Color </button> -->
-             <label>Font Color <input type="color" class="colorPicker" value='#ff9ff9' data-inputColor="1" onchange="updateFontColor(this)"></label>
-             <label>Text Shadow <input class="shadow" type="checkbox" onclick="updateTextShadow(this)" data-checkBox="1"></label>
-        </section>
-        </section>
-        <section class="directions">
-        <section >
-            <i class="fas fa-align-left  leftAlign" onclick="onAlignText('left')"></i>
-            <i class="fas fa-align-center  centerAlign" onclick="onAlignText('center')"></i>
-            <i class="fas fa-align-right  rightAlign" onclick="onAlignText('right')" ></i>
-        </section>
-        <section>
-            <i class="fas fa-arrow-right " onclick="moveLine('right')"></i>
-            <i class="fas fa-arrow-left " onclick="moveLine('left')"></i>
-            <i class="fas fa-arrow-up " onclick="moveLine('up')"></i>
-            <i class="fas fa-arrow-down " onclick="moveLine('down')"></i>
-        </section>
-        </section>
-        <hr>
-        <button name="save" class="save"><a onclick="downloadMeme(this)">DownLoad Meme</a></button>
-        </section>
-        </section>
+        <section class="memeEditor" >
+            <label class="backMobile" onclick="showGallery()"><i class="fas fa-arrow-left"></i>Back</label>
+            <canvas id="memeCanvas" width=1000 height=1000 style="width:50%;height:50%;" onclick="handleLineText(event)"></canvas>
+            <!-- ******************************************************************************** -->
+            <section class="editBtns">
+                <button onclick="showGallery()" class="back"><i class="fas fa-arrow-left"></i> Back To Gallery</button>
+                <section class="sectionInput">
+                <input type="text" class="inpt-txt1 inputText" placeholder="Enter your text" onkeyup="writeText(this)"
+                    data-idx="1">
+                </section>
+                <section class="addRemoveLines">
+                    <button class="addLine" onclick="onAdding()"><i class="fas fa-plus"></i> Add Line</button>
+                    <button class="deleteline" onclick="onDeleteLine()" title="delete"><i class="fa fa-trash"
+                            aria-hidden="true"></i> Delete Line</button>
+                </section>
+                <section class="switchLines">
+                    <button class="nextLine" onclick="pagination('next')">Switch Line</button>
+                </section>
+                <h3><i style="font-size:24px" class="fa">&#xf044;</i>Style Your Font</h3>
+                <section class="editFont">
+                    <section class="fontFamily" style="display:flex;">
+                        <select onchange="updateFontFamily(this.value)" class="selectFamily">
+                            <option>select font family</option>
+                            <option value="Arial">Arial</option>
+                            <option value="mono">mono</option>
+                            <option value="Impact">Impact</option>
+                        </select>
+                    </section>
+                    <section class="text-styling-btns">
+                        <section class="fontSize">
+                            <button type="button " onclick="updateFontSize(this)" data-input="1">+ Font Size</button>
+                            <button type="button" onclick="updateFontSize(this)" data-input="1">- Font Size</button>
+                        </section>
+                        <section class="colorShadow">
+                            <!-- <button class="btn-color">Font Color </button> -->
+                            <label>Font Color <input type="color" class="colorPicker" value='#ff9ff9' data-inputColor="1"
+                                    onchange="updateFontColor(this)"></label>
+                            <label>Text Shadow <input class="shadow" type="checkbox" onclick="updateTextShadow(this)"
+                                    data-checkBox="1"></label>
+                        </section>
+                    </section>
+                    <section class="directions colorShadow" >
+                        <section>
+                            <i class="fas fa-align-left  leftAlign" onclick="onAlignText('left')"></i>
+                            <i class="fas fa-align-center  centerAlign" onclick="onAlignText('center')"></i>
+                            <i class="fas fa-align-right  rightAlign" onclick="onAlignText('right')"></i>
+                        </section>
+                        <section>
+                            <i class="fas fa-arrow-right " onclick="moveLine('right')"></i>
+                            <i class="fas fa-arrow-left " onclick="moveLine('left')"></i>
+                            <i class="fas fa-arrow-up " onclick="moveLine('up')"></i>
+                            <i class="fas fa-arrow-down " onclick="moveLine('down')"></i>
+                        </section>
+                    </section>
+                    <hr>
+                    <button name="save" class="save"><a onclick="downloadMeme(this)"> 
+                        <i class="fa fa-download" aria-hidden="true" style="font-size:24px"></i>
+                          DownLoad Meme</a></button>
+                </section>
+            </section>
 
-    </section>
-    <!-- ******************************************************************************** -->
-</section>
-</section>
-</main>
-<script src="js/data.js"></script>
-<script src="js/images-service.js"></script>
-<script src="js/canvas-service.js"></script>
-<script src="js/main-canvas.js"></script>
-<script src="js/main.js"></script>
-<script src="js/util-service.js"></script>
-<script src="js/nav-main.js"></script>
+        </section>
+        <!-- ******************************************************************************** -->
+        </section>
+        </section>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/images-service.js"></script>
+    <script src="js/canvas-service.js"></script>
+    <script src="js/main-canvas.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/util-service.js"></script>
+    <script src="js/nav-main.js"></script>
 </body>
 
 </html>
