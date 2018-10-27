@@ -3,9 +3,10 @@
 function openEditorOfMeme(elImg) {
 
     gMeme.selectedImgId = +elImg.getAttribute("data-img");
-
+    setCanvasSize();
     gElMemeEditor.style.display = "flex";
     gElGallery.style.display = "none";
+    
     //first line when canvas first opened, init with the default values
     gMeme.txts = [];
     gMeme.txts.push(createLine(''));

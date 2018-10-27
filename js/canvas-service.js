@@ -24,6 +24,19 @@ function createLine(lineText) {
     return line;
 }
 
+function setCanvasSize(){
+    var windowWidth = window.innerWidth;
+    // console.log('window width ',windowWidth);
+    // var canvas = document.querySelector('#memeCanvas');
+    if(windowWidth < 830){
+        gCanvas.style.width = "100%";
+        gCanvas.style.height = "100%";
+    }
+
+    console.log('window gCanvas.width ',gCanvas.width);
+    console.log('window gCanvas.height ',gCanvas.height);
+}
+
 function addLine(txt) {
 
     gCurrLine = gMeme.txts.push(createLine(txt)) - 1;

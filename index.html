@@ -11,7 +11,7 @@ crossorigin="anonymous">
 <title>Home</title>
 </head>
 <!-- onresize="setCanvasStartingCoords()" -->
-<body onload="init()">
+<body onload="init()" onresize="setCanvasSize()" >
     <header>
         <div class="screen" onclick="toggleMenu(event)"></div>
         <section class="header-wraper container">
@@ -49,7 +49,8 @@ crossorigin="anonymous">
 
     </section>
 </section>
-<section class="memeEditor" style="display: none;padding:1%">
+<section class="memeEditor" style="display: none;padding:1%;">
+    <label class="backMobile"><i class="fas fa-arrow-left"></i>Back</label>
     <canvas id="memeCanvas" width = 1000 height = 1000 style="width:50%;height:50%;" onclick="handleLineText(event)"></canvas>
     <!-- ******************************************************************************** -->
     <section class="editBtns" >
