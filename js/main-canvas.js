@@ -1,9 +1,4 @@
 'use strict'
-function setCanvasSize() {
-    //should be according to the images size
-    gCanvas.width = 500;
-    gCanvas.height = 500;
-}
 
 function openEditorOfMeme(elImg) {
 
@@ -11,19 +6,26 @@ function openEditorOfMeme(elImg) {
 
     gElMemeEditor.style.display = "flex";
     gElGallery.style.display = "none";
-
+    //first line when canvas first opened, init with the default values
+    gMeme.txts = [];
+    gMeme.txts.push(createLine(''));
+    //indicator for the current line in action
+    gCurrLine = 0;
     gMeme.memeImage.src = `img/${gMeme.selectedImgId}.jpg`;
 
     gMeme.memeImage.onload = function () {
         gCanvas.width = this.width;
         gCanvas.height = this.height;
+        console.log('gCanvas.width',gCanvas.width);
+        console.log('gCanvas.height',gCanvas.height)
         gCtx.drawImage(gMeme.memeImage, 0, 0, gCanvas.width, gCanvas.height)
     }
 }
 
-//this function takes care of each change done by the user
+//render the user input on canvas
 function renderCanvas() {
-    // debugger
+    
+    //for uploaded images
     if (typeof (gMeme.selectedImgId) !== "number") {
         gMeme.selectedImgId = gHoldImg;
         var img = gMeme.selectedImgId;
@@ -31,10 +33,12 @@ function renderCanvas() {
         var img = new Image();
         img.src = `img/${gMeme.selectedImgId}.jpg`;
     }
+
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
     for (var i = 0; i < gMeme.txts.length; i++) {
 
-        gCtx.font = `${gMeme.txts[i].bold} ${gMeme.txts[i].size}px ${gMeme.txts[i].family}`;
+        gCtx.font = `${gMeme.txts[i].bold?'bold':'normal'} ${gMeme.txts[i].fontSize}px ${gMeme.txts[i].family}`;
+
         if (gMeme.txts[i].text_shadow) {
             gCtx.offsetX = 10;
             gCtx.offsetY = 10;
@@ -46,7 +50,17 @@ function renderCanvas() {
             gCtx.shadowColor = '';
             gCtx.shadowBlur = 0;
         }
+
+        gCtx.strokeStyle = 'black';
         gCtx.fillStyle = gMeme.txts[i].color;
+        gCtx.lineWidth = 3;
+
+        if(gMeme.txts[i].alignText === 'center'){
+            gMeme.txts[i].x = gCanvas.width/2;
+            gCtx.textAlign = 'center';
+        }
+        
+        gCtx.strokeText(gMeme.txts[i].line, gMeme.txts[i].x, gMeme.txts[i].y);
         gCtx.fillText(gMeme.txts[i].line, gMeme.txts[i].x, gMeme.txts[i].y);
     }
 }
@@ -57,7 +71,6 @@ function onAdding() {
     text.style.backgroundColor = "yellow";
 
     addLine('');
-    gCurrLine++;
 }
 
 function moveLine(dir) {
@@ -72,7 +85,7 @@ function moveLine(dir) {
             if (gMeme.txts[gCurrLine].x < (gCanvas.width - line_width - 10)) gMeme.txts[gCurrLine].x += 5;
             break;
         case 'down':
-            if (gMeme.txts[gCurrLine].y < gCanvas.height - gMeme.txts[gCurrLine].size - 10) gMeme.txts[gCurrLine].y += 5;
+            if (gMeme.txts[gCurrLine].y < gCanvas.height - gMeme.txts[gCurrLine].fontSize - 10) gMeme.txts[gCurrLine].y += 5;
             break;
         case 'up':
             if (gMeme.txts[gCurrLine].y > 10) gMeme.txts[gCurrLine].y -= 5;
@@ -84,17 +97,18 @@ function moveLine(dir) {
 function writeText(elInput) {
 
     elInput.style.backgroundColor = "#ffffff";
-    if (!gMeme.txts.length)  gMeme.txts.push(createLine(elInput.value));
     gMeme.txts[gCurrLine].line = elInput.value;
 
     renderCanvas();
 }
 
 function updateFontSize(elInput) {
-    if (elInput.innerHTML === '+' && gMeme.txts[gCurrLine].x < 1000)
-        gMeme.txts[gCurrLine].size += 10;
-    else if (elInput.innerHTML === '-')
-        gMeme.txts[gCurrLine].size -= 10;
+    if (elInput.innerHTML === '+' && gMeme.txts[gCurrLine].x < 1000 &&
+    gMeme.txts[gCurrLine].x > 0)
+        gMeme.txts[gCurrLine].fontSize += 10;
+    else if (elInput.innerHTML === '-' && gMeme.txts[gCurrLine].fontSize > 0
+    && gMeme.txts[gCurrLine].fontSize < gCanvas.height)
+        gMeme.txts[gCurrLine].fontSize -= 10;
 
     renderCanvas();
 }
@@ -124,90 +138,57 @@ function updateFontFamily(fontFamily) {
 }
 
 function alignText(direction) {
-    gMeme.txts[gCurrLine].alignText = direction;
-    if (gMeme.txts[gCurrLine].alignText === 'right') gMeme.txts[gCurrLine].x = (gCanvas.width - (gCtx.measureText(gMeme.txts[gCurrLine].line).width + 5));
-    else if (gMeme.txts[gCurrLine].alignText === 'center') gMeme.txts[gCurrLine].x = (gCanvas.width - (gCtx.measureText(gMeme.txts[gCurrLine].line).width)) / 2;
-    else gMeme.txts[gCurrLine].x = 5;
 
+    gMeme.txts[gCurrLine].alignText = direction;
     renderCanvas();
 }
 
 function handleLineText(ev) {
-    // console.log('I was clicked x',ev.offsetX);
-    // console.log('I was clicked y',ev.offsetY);
-    var x = ev.clientX - gCanvas.offsetLeft;
-    var y = ev.clientY - gCanvas.offsetTop;
+    
+    // var x = ev.clientX - gCanvas.offsetLeft;
+    // var y = ev.clientY - gCanvas.offsetTop;
 
-    console.log('x', x)
-    console.log('y', y)
+    // console.log('x', x)
+    // console.log('y', y)
 
-    gCurrLine = getLineByCoords({ x, y });
+    // gCurrLine = getLineByCoords({ x, y });
 }
 
 function onDeleteLine() {
-
+    var inputText = document.querySelector('.inpt-txt1');
+    inputText.value = gMeme.txts[gCurrLine].line;
+    
     deleteLine(gCurrLine);
-    // gCurrLine = null;
-    if (!gMeme.txts.length) gCurrLine = 0;
+    inputText.value = gMeme.txts[gCurrLine].line;
+
+    if (!gMeme.txts.length || gCurrLine < 0) gCurrLine = 0;
 
     renderCanvas();
 }
 
-// ***********************************************************************
+function pagination() {
 
-function handleMouseDown(ev) {
+    if (!gMeme.txts.length) return;
 
-    // console.log('I am in here');
-
-    let rect = gCanvas.getBoundingClientRect();
-    gStartX = ev.clientX - rect.left;
-    gStartY = ev.clientY - rect.top;
-    // console.log(gStartX, gStartY);
-
-    for (let i = 0; i < gMeme.txts.length; i++) {
-        // console.log(gUserInput[i].x, gUserInput[i].y);
-        if (elHit(gStartX, gStartY, i)) {
-            console.log('in');
-            gCurrEl = i;
-            gMeme.txts[i].gapX = gStartX - gMeme.txts[i].x;
-            gMeme.txts[i].gapY = gMeme.txts[i].y - gStartY;
-        }
+    var elInputTxt = document.querySelector('.inputText');
+    var elInputClr = document.querySelector('.colorPicker');
+    
+    gCurrLine++;
+    if(gCurrLine >= gMeme.txts.length) gCurrLine = 0;
+    else{
+        elInputTxt.value = gMeme.txts[gCurrLine].line;
+        elInputClr.value = gMeme.txts[gCurrLine].color;
+        gMeme.txts.map(function(line,idx){
+            line.isActive = 0;
+        });
+    
+        gMeme.txts[gCurrLine].isActive = 1;
+        renderCanvas();
     }
+  
 }
 
-// done dragging
-function handleMouseUp(ev) {
-    if (gCurrEl === -1) return;
-    else {
-        gMeme.txts[gCurrEl].isActive = 0;
-        gCurrEl = -1;
-    }
-}
-
-
-function handleMouseMove(ev) {
-    if (gCurrEl < 0) {
-        return;
-    }
-    let rect = gCanvas.getBoundingClientRect();
-    let mouseX = ev.clientX - rect.left;
-    let mouseY = ev.clientY - rect.top;
-
-    // Put your mousemove stuff here
-    let newX = mouseX - gStartX;
-    let newY = mouseY - gStartY;
-    gStartX = mouseX;
-    gStartY = mouseY;
-
-    // let canvasEl = gUserInput[currEl];
-    let canvasEl = gMeme.txts[gCurrEl];
-    canvasEl.x += newX;
-    canvasEl.y += newY;
-    renderCanvas();
-}
-
-function elHit(x, y, idx) {
-    var canvasEl = gMeme.txt[idx];
-    return (canvasEl.x <= x && x <= canvasEl.x + canvasEl.width
-        && canvasEl.y >= y && y >= canvasEl.y - canvasEl.font_size);
+function onAlignText(direction){
+    gMeme.txts[gCurrLine].alignText = direction;
+    alignTextLine(gCurrLine);
 }

@@ -42,13 +42,15 @@ crossorigin="anonymous">
             <option value="funny">Funny</option>
             <option value="evil">Evil</option>
         </select> <br>
-        Search:<input type="search" id="search" onkeyup="onSearchImg()">
+        Search:<input type="search" id="search" onkeyup="onSearchImg()" list ="keywords">
+        <datalist id = "keywords"></datalist>
     </div>
     <section class="gallery">
 
     </section>
 </section>
 <section class="memeEditor" style="display: none;">
+    <!-- ******************************************************************************** -->
     <section class="editBtns" style="margin-bottom: 3%;">
         <section class="text-styling-btns border">
             <input type="text" class="inpt-txt1 editctrl inputText"
@@ -62,7 +64,7 @@ crossorigin="anonymous">
             <input class ="editctrl" type="checkbox" onclick="updateTextShadow(this)" data-checkBox="1">
             Text Shadow
         </label>
-        <input type="color" class="colorPicker editctrl" value="#313131" data-inputColor="1"
+        <input type="color" class="colorPicker editctrl" value='#ffffff' data-inputColor="1"
             onchange="updateFontColor(this)">
             <select onchange="updateFontFamily(this.value)">
                     <option>select font family</option>
@@ -74,9 +76,9 @@ crossorigin="anonymous">
         
         <section class="directions">
         <section >
-            <i class="fas fa-align-left editctrl" onclick="alignText('left')"></i>
-            <i class="fas fa-align-center editctrl" onclick="alignText('center')"></i>
-            <i class="fas fa-align-right editctrl" onclick="alignText('right')" ></i>
+            <i class="fas fa-align-left editctrl leftAlign" onclick="onAlignText('left')"></i>
+            <i class="fas fa-align-center editctrl centerAlign" onclick="onAlignText('center')"></i>
+            <i class="fas fa-align-right editctrl rightAlign" onclick="onAlignText('right')" ></i>
         </section>
         <section>
             <i class="fas fa-arrow-right editctrl" onclick="moveLine('right')"></i>
@@ -85,13 +87,9 @@ crossorigin="anonymous">
             <i class="fas fa-arrow-down editctrl" onclick="moveLine('down')"></i>
         </section>
         </section>
-        <section class="actions-btns text-styling-btns">
+        <section class="actions-btns text-styling-btns"> 
         <section>
             <button class ="editctrl nextLine" onclick="pagination('next')">Next Line</button>
-            <button class ="editctrl prevLine" onclick="pagination('prev')">Previous Line</button>
-        </section>
-        <section style="margin:auto;">
-            
         </section>
 
         <section>
@@ -100,10 +98,9 @@ crossorigin="anonymous">
             <button onclick="showGallery()">Back To Gallery</button>
         </section>
         </section>
-    
     </section>
-    <canvas id="memeCanvas" width="1000" height="1000" style="width:100%;height:100%;" onclick="handleLineText(event)">
-        <!-- <div class="canvasHolder"><canvas id="memeCanvas" onclick="handleLineText(event)"></canvas></div> -->
+    <!-- ******************************************************************************** -->
+    <canvas id="memeCanvas" width = 1000 height = 1000 style="width:100%;height:100%;" onclick="handleLineText(event)"></canvas>
 </section>
 </main>
 <script src="js/data.js"></script>

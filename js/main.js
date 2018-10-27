@@ -11,7 +11,6 @@ function init() {
     gCtx = gCanvas.getContext('2d');
     gElGallery = document.querySelector('.galleryWrap');
 
-    setCanvasSize();
 }
 
 function renderGallery(images) {
@@ -36,6 +35,21 @@ function renderGallery(images) {
                 </div>`
 
     document.querySelector('.gallery').innerHTML = strHtml;
+    renderKeyWords();
+}
+
+function renderKeyWords(){
+
+    var datalist = document.querySelector('#keywords');
+    var sHTMLs = '',words='';
+    
+    sHTMLs = gKeywords.map(function(line,idx){
+            var word = line.split(',')[0];
+            return `<option value = "${word}">`
+    });
+
+    datalist.innerHTML = sHTMLs.join(' ');
+
 }
 
 function onSearchImg(searchKey) {

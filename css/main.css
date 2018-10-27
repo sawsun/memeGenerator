@@ -9,14 +9,17 @@ footer{position: relative;}
 .container{
     width: 80%;
     margin: auto;   
+    margin-top:0;
 }
 
 /* main */
 
 main{
-    border: 2px solid grey;
+    border: 1px solid grey;
+    border-top: 0;
     height: 100%;
     margin: auto;
+    margin-top:0;
 }
 
 /* GALLERY */

@@ -75,39 +75,6 @@ function handleImageFromInput(ev) {
     reader.readAsDataURL(ev.target.files[0]);
 }
 
-
-function pagination(goNextPrev) {
-
-    if (!gMeme.txts.length) return;
-
-    var elInputTxt = document.querySelector('.inputText');
-    var elInputClr = document.querySelector('.colorPicker');
-    
-    var lineLen = gMeme.txts.length - 1;
-
-    console.log('lineslen', lineLen);
-    console.log('currLine', gCurrLine);
-
-    if (goNextPrev === 'next') gCurrLine++;
-    else if (goNextPrev === 'prev') gCurrLine--;
-
-    if (gCurrLine < 0) gCurrLine = 0;
-    else if (gCurrLine >= lineLen) gCurrLine = lineLen - 1;
-
-    if (gMeme.txts.length > 0) {
-        elInputTxt.value = (gMeme.txts[gCurrLine].line === '') ? 'Empty Line' : gMeme.txts[gCurrLine].line;
-        elInputClr.value = gMeme.txts[gCurrLine].color;
-    }
-
-}
-
-function onDeleteLine() {
-    
-    deleteLine(gCurrLine);
-    elInputTxt.value = '';
-    renderCanvas();
-}
-
 //return an arry of img according to search input
 function filterImg(key) {
     return gImgs.filter(function (currImg) {

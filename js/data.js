@@ -1,21 +1,8 @@
 'use strict'
 const KEY_IMAGES = 'memeImages';
 var gMeme = {
-
     selectedImgId: 1,
-    txts: [{
-        line: '',
-        size: 20,
-        family: 'Impact',
-        text_shadow: 0,
-        align: 'left',
-        color: '#313131',
-        width: 0,
-        bold: 1,
-        x: 5,
-        y: 25,
-        isActive: 0
-    }],
+    txts: [],
     memeImage: new Image()
 }
 
